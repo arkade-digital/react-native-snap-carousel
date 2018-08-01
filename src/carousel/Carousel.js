@@ -66,7 +66,9 @@ export default class Carousel extends Component {
         useScrollView: PropTypes.bool,
         vertical: PropTypes.bool,
         onBeforeSnapToItem: PropTypes.func,
-        onSnapToItem: PropTypes.func
+        onSnapToItem: PropTypes.func,
+        customItemComponent: PropTypes.node,
+        customAnimatedItemComponent: PropTypes.node,
     };
 
     static defaultProps = {
@@ -1145,7 +1147,9 @@ export default class Carousel extends Component {
             sliderHeight,
             sliderWidth,
             slideStyle,
-            vertical
+            vertical,
+            customItemComponent,
+            customAnimatedItemComponent,
         } = this.props;
 
         const animatedValue = interpolators && interpolators[index];
@@ -1155,7 +1159,7 @@ export default class Carousel extends Component {
         }
 
         const animate = this._shouldAnimateSlides();
-        const Component = animate ? Animated.View : View;
+        const Component = animate ? customAnimatedItemComponent || Animated.View : customItemComponent || View;
         const animatedStyle = animate ? this._getSlideInterpolatedStyle(index, animatedValue) : {};
 
         const parallaxProps = hasParallaxImages ? {
