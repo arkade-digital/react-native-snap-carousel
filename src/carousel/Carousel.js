@@ -67,8 +67,8 @@ export default class Carousel extends Component {
         vertical: PropTypes.bool,
         onBeforeSnapToItem: PropTypes.func,
         onSnapToItem: PropTypes.func,
-        customItemComponent: PropTypes.node,
-        customAnimatedItemComponent: PropTypes.node,
+        customItemComponent: PropTypes.func,
+        customAnimatedItemComponent: PropTypes.func
     };
 
     static defaultProps = {
